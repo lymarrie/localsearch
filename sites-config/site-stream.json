@@ -1,0 +1,27 @@
+{
+    "$id": "site-entity",
+    "filter": {
+      "entityIds": [
+        "site"
+      ]
+    },
+    "source": "knowledgeGraph",
+    "fields": [
+      "name",
+      "logo",
+      "c_header",
+      "c_footer",
+      "c_primaryColor",
+      "c_secondaryColor",
+      "c_font",
+      "c_relatedPages.name",
+      "c_relatedPages.id",
+      "c_relatedPages.slug"
+    ],
+    "localization": {
+      "locales": [
+        "en"
+      ],
+      "primary": false
+    }
+}
