@@ -27,11 +27,11 @@
 
 
 export const config = {
-  name: "contactpage",
+  name: "eventspage",
   hydrate: true,
-  streamId: "contactpage",
+  streamId: "eventspage",
   stream: {
-    $id: "contactpage",
+    $id: "eventspage",
     source: "knowledgeGraph",
     destination: "pages",
     fields: [
@@ -39,17 +39,18 @@ export const config = {
       "uid",
       "meta",
       "name",
-      "c_relatedLocation.name",
-      "c_relatedLocation.address",
-      "c_relatedLocation.hours",
-      "c_relatedLocation.mainPhone",
-      "c_relatedLocation.emails",
-      "richTextDescription",
+      "description",
       "photoGallery",
+      "c_events.name",
+      "c_events.description",
+      "c_events.linkedLocation",
+      "c_events.address",
+      "c_events.time",
+      "c_events.photoGallery",
       "slug"
     ],
     filter: {
-      entityTypes: ["ce_contactUsPage"],
+      entityTypes: ["ce_eventsPage"],
     },
     localization: {
       locales: ["en"],
@@ -59,18 +60,18 @@ export const config = {
 };
 
 export const getPath = (data: any) => {
-  return `contact`;
+  return `events`;
 };
 
-const ContactPage: React.FC<Data> = (props) => {
+const EventPage: React.FC<Data> = (props) => {
     const { document } = props;
     const { streamOutput } = document;
     const { 
         _site, 
         name, 
-        richTextDescription, 
+        description, 
         photoGallery, 
-        c_relatedLocation, 
+        c_events, 
         slug 
       } = streamOutput;
 
@@ -98,7 +99,6 @@ const ContactPage: React.FC<Data> = (props) => {
                 ></Banner>)}
             </div>
                 <div className="centered-container">
-                    <Contact address={c_relatedLocation[0].address} mainphone={c_relatedLocation[0].mainPhone} hours={c_relatedLocation[0].hours}></Contact>
                 </div>
             <Footer footer={_site.c_footer}></Footer>
           </body>
@@ -109,9 +109,9 @@ const ContactPage: React.FC<Data> = (props) => {
     export const render = (data: Data) =>
     reactWrapper(
       data,
-      "contactpage.tsx",
-      renderToString(<ContactPage {...data} />),
+      "eventpage.tsx",
+      renderToString(<EventPage {...data} />),
       true
     );
 
-export default ContactPage;
+export default EventPage;

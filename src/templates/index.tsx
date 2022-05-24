@@ -61,7 +61,7 @@ export const config = {
       "c_header",
       "c_footer",
       "c_googleAnalytics",
-      "c_metaDescription",
+      "c_metaDescription"
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -82,7 +82,6 @@ export const config = {
  * take on the form: featureName/entityId
  */
 export const getPath = (data: Data) => {
-  // return `index/${data.document.streamOutput.id.toString()}`;
   return `index.html`;
 };
 
@@ -119,6 +118,7 @@ const Index: React.FC<Data> = (props) => {
     c_googleAnalytics,
     c_metaDescription,
   } = streamOutput;
+  console.log(_site);
 
   return (
     <>

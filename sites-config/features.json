@@ -1,22 +1,6 @@
 {
   "features": [
     {
-      "name": "index",
-      "streamId": "locations",
-      "templateType": "JS",
-      "entityPageSet": {
-        "plugin": {}
-      }
-    },
-    {
-      "name": "static",
-      "streamId": "",
-      "templateType": "JS",
-      "staticPage": {
-        "plugin": {}
-      }
-    },
-    {
       "name": "about-us",
       "streamId": "about-us",
       "templateType": "JS",
@@ -33,8 +17,24 @@
       }
     },
     {
+      "name": "eventspage",
+      "streamId": "eventspage",
+      "templateType": "JS",
+      "entityPageSet": {
+        "plugin": {}
+      }
+    },
+    {
       "name": "gallery",
       "streamId": "gallery",
+      "templateType": "JS",
+      "entityPageSet": {
+        "plugin": {}
+      }
+    },
+    {
+      "name": "index",
+      "streamId": "locations",
       "templateType": "JS",
       "entityPageSet": {
         "plugin": {}
@@ -42,41 +42,6 @@
     }
   ],
   "streams": [
-    {
-      "$id": "locations",
-      "source": "knowledgeGraph",
-      "destination": "pages",
-      "fields": [
-          "id",
-          "uid",
-          "meta",
-          "name",
-          "address",
-          "description",
-          "hours",
-          "mainPhone",
-          "geocodedCoordinate",
-          "services",
-          "logo",
-          "photoGallery",
-          "c_displayPhotoGallery",
-          "c_displayStaticMap",
-          "c_primaryColor",
-          "c_secondaryColor",
-          "c_font",
-          "c_header",
-          "c_footer",
-          "c_googleAnalytics",
-          "c_metaDescription"
-      ],
-      "filter": {
-        "entityTypes": ["location"]
-      },
-      "localization": {
-        "locales": ["en"],
-        "primary": false
-      }
-    },
     {
       "$id": "about-us",
       "source": "knowledgeGraph",
@@ -133,6 +98,37 @@
       }
     },
     {
+      "$id": "eventspage",
+      "source": "knowledgeGraph",
+      "destination": "pages",
+      "fields": [
+        "id",
+        "uid",
+        "meta",
+        "name",
+        "description",
+        "photoGallery",
+        "c_events.name",
+        "c_events.description",
+        "c_events.linkedLocation",
+        "c_events.address",
+        "c_events.time",
+        "c_events.photoGallery",
+        "slug"
+      ],
+      "filter": {
+        "entityTypes": [
+          "ce_eventsPage"
+        ]
+      },
+      "localization": {
+        "locales": [
+          "en"
+        ],
+        "primary": false
+      }
+    },
+    {
       "$id": "gallery",
       "source": "knowledgeGraph",
       "destination": "pages",
@@ -148,6 +144,45 @@
       "filter": {
         "entityTypes": [
           "ce_photoGalleryPage"
+        ]
+      },
+      "localization": {
+        "locales": [
+          "en"
+        ],
+        "primary": false
+      }
+    },
+    {
+      "$id": "locations",
+      "source": "knowledgeGraph",
+      "destination": "pages",
+      "fields": [
+        "id",
+        "uid",
+        "meta",
+        "name",
+        "address",
+        "description",
+        "hours",
+        "mainPhone",
+        "geocodedCoordinate",
+        "services",
+        "logo",
+        "photoGallery",
+        "c_displayPhotoGallery",
+        "c_displayStaticMap",
+        "c_primaryColor",
+        "c_secondaryColor",
+        "c_font",
+        "c_header",
+        "c_footer",
+        "c_googleAnalytics",
+        "c_metaDescription"
+      ],
+      "filter": {
+        "entityTypes": [
+          "location"
         ]
       },
       "localization": {
