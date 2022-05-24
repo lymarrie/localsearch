@@ -118,7 +118,6 @@ const Index: React.FC<Data> = (props) => {
     c_googleAnalytics,
     c_metaDescription,
   } = streamOutput;
-  console.log(_site);
 
   return (
     <>

@@ -9,14 +9,6 @@
       }
     },
     {
-      "name": "contactpage",
-      "streamId": "contactpage",
-      "templateType": "JS",
-      "entityPageSet": {
-        "plugin": {}
-      }
-    },
-    {
       "name": "eventspage",
       "streamId": "eventspage",
       "templateType": "JS",
@@ -58,36 +50,6 @@
       "filter": {
         "entityTypes": [
           "ce_aboutUsPage"
-        ]
-      },
-      "localization": {
-        "locales": [
-          "en"
-        ],
-        "primary": false
-      }
-    },
-    {
-      "$id": "contactpage",
-      "source": "knowledgeGraph",
-      "destination": "pages",
-      "fields": [
-        "id",
-        "uid",
-        "meta",
-        "name",
-        "c_relatedLocation.name",
-        "c_relatedLocation.address",
-        "c_relatedLocation.hours",
-        "c_relatedLocation.mainPhone",
-        "c_relatedLocation.emails",
-        "richTextDescription",
-        "photoGallery",
-        "slug"
-      ],
-      "filter": {
-        "entityTypes": [
-          "ce_contactUsPage"
         ]
       },
       "localization": {

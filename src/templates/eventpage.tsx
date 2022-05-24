@@ -75,6 +75,20 @@ const EventPage: React.FC<Data> = (props) => {
         slug 
       } = streamOutput;
 
+      const sortedEvents = c_events.sort(function(a:any, b:any) {
+        return (a.time.start < b.time.start) ? -1 : ((a.time.start > b.time.start) ? 1 : 0);
+      });
+
+      const events = sortedEvents.map((e:any) => (
+        <div className="p-5 border-2 rounded-xl space-y-3 bg-gray-100 drop-shadow-md">
+          <img src={e.photoGallery[0].image.url} className="rounded-xl w-100 h-auto"/>
+          <div className="pt-2 text-xl text-center font-bold">{e.name}</div>
+          <div className="text-amber-700 font-semibold">{e.time.start}</div>
+          <div className="text-gray-500 font-semibold">{e.address.city}, {e.address.region}</div>
+          <div className="">{e.description}</div>
+        </div>
+      ));
+
       return (
         <>
           <body className="font-main">
@@ -99,6 +113,12 @@ const EventPage: React.FC<Data> = (props) => {
                 ></Banner>)}
             </div>
                 <div className="centered-container">
+                  <div className="section">
+                    <div className="text-4xl text-center">Events</div>
+                    <div className="pt-10 grid gap-y-8 sm:grid-cols-2 lg:grid-cols-3 gap-x-5">
+                      {events}
+                    </div>
+                  </div>
                 </div>
             <Footer footer={_site.c_footer}></Footer>
           </body>
