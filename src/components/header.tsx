@@ -30,19 +30,22 @@ type Header = {
 
 const Header = (props: Header) => {
   const { name, header, relatedPages, primaryColor, secondaryColor, font, googleAnalytics, logo } = props;
-  const headerLinks = header.map((link) => (
-    <div>
-      <a key="uRL" href={link.uRL} className="hover:underline">
-        {link.label}
-      </a>
-    </div>
-  ));
+  
+  var headerLinks;
   var relatedPageLinks;
   if (relatedPages) {
     relatedPageLinks = relatedPages.map((page: any) => (
       <div>
         <a key="uRL" href={page.id} className="hover:underline">
           {page.name}
+        </a>
+      </div>
+    ));
+  } else {
+    headerLinks = header.map((link) => (
+      <div>
+        <a key="uRL" href={link.uRL} className="hover:underline">
+          {link.label}
         </a>
       </div>
     ));
