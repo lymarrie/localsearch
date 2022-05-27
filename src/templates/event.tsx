@@ -27,11 +27,11 @@
 
 
 export const config = {
-  name: "gallery",
+  name: "event",
   hydrate: true,
-  streamId: "gallery",
+  streamId: "event",
   stream: {
-    $id: "gallery",
+    $id: "event",
     source: "knowledgeGraph",
     destination: "pages",
     fields: [
@@ -39,12 +39,13 @@ export const config = {
       "uid",
       "meta",
       "name",
-      "richTextDescription",
+      "description",
+      "address",
+      "time",
       "photoGallery",
-      "slug"
     ],
     filter: {
-      entityTypes: ["ce_photoGalleryPage"],
+      entityTypes: ["event"],
     },
     localization: {
       locales: ["en"],
@@ -53,19 +54,31 @@ export const config = {
   },
 };
 
-export const getPath = (data: any) => {
-  return `gallery`;
+const renderPrettyAddress = (address: any) => {
+  return (
+    <>
+      <div>{address.line1}</div>
+      <div>
+        {address.city}, {address.region}
+      </div>
+    </>
+  );
 };
 
-const Gallery = (props: any) => {
+export const getPath = (data: Data) => {
+  return `${data.document.streamOutput.id.toString()}`;
+};
+
+const Event: React.FC<Data> = (props) => {
     const { document } = props;
     const { streamOutput } = document;
     const { 
         _site, 
         name, 
-        richTextDescription, 
+        description, 
         photoGallery, 
-        slug 
+        address, 
+        time 
       } = streamOutput;
 
       return (
@@ -84,15 +97,23 @@ const Gallery = (props: any) => {
                 ></Header>
             </div>
             <div className="w-full">
-                {photoGallery && (<Banner 
-                    name={name}
-                    secondaryColor="blue"
-                    photo={photoGallery[0].image.url}
-                    position="bg-center"
-                ></Banner>)}
             </div>
                 <div className="centered-container">
-                    {photoGallery && (<PhotoGallery photoGallery={photoGallery.slice(1)}></PhotoGallery>)}
+                  <div className="py-10 flex flex-col space-y-8 lg:flex-row lg:space-x-8 lg:space-y-0">
+                    <img src={photoGallery[0].image.url} className="rounded-xl lg:w-3/5"></img>
+                    <div className="flex flex-col space-y-8 lg:pt-2">
+                      <h1 className="text-3xl font-bold">{name}</h1>
+                      <div className="text-amber-700 text-xl font-semibold">{time.start}</div>
+                      <div className="space-y-3">
+                        <div className="text-xl font-semibold">Event Description</div>
+                        <div className="text-gray-800">{description}</div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="text-xl font-semibold">Event Location</div>
+                        <div className="">{renderPrettyAddress(address)}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             <Footer footer={_site.c_footer}></Footer>
           </body>
@@ -100,12 +121,12 @@ const Gallery = (props: any) => {
       );
     };
 
-export const render = (data: Data) =>
-  reactWrapper(
-    data,
-    "gallery.tsx",
-    renderToString(<Gallery {...data} />),
-    true
-  );
+    export const render = (data: Data) =>
+    reactWrapper(
+      data,
+      "event.tsx",
+      renderToString(<Event {...data} />),
+      true
+    );
 
-export default Gallery;
+export default Event;

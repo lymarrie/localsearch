@@ -54,6 +54,8 @@ export const config = {
       "services",
       "logo",
       "photoGallery",
+      "c_displayAboutUs",
+      "c_displayContactInfo",
       "c_displayPhotoGallery",
       "c_displayStaticMap",
       "c_primaryColor",
@@ -109,6 +111,8 @@ const Index: React.FC<Data> = (props) => {
     services,
     logo,
     photoGallery,
+    c_displayAboutUs,
+    c_displayContactInfo,
     c_displayPhotoGallery,
     c_displayStaticMap,
     c_primaryColor,
@@ -120,13 +124,43 @@ const Index: React.FC<Data> = (props) => {
     c_metaDescription,
   } = streamOutput;
 
+  var basicHeaderLinks:any = [];
+  let basicHeaderOptions = [
+    {
+      object: c_displayAboutUs,
+      key: "About",
+      value: "#about"
+    },
+    {
+      object: c_displayContactInfo,
+      key: "Contact",
+      value: "#contact"
+    },
+    {
+      object: c_displayPhotoGallery,
+      key: "Gallery",
+      value: "#gallery"
+    },
+    {
+      object: c_displayStaticMap,
+      key: "Map",
+      value: "#map"
+    }
+  ];
+
+  for (let i=0; i<basicHeaderOptions.length; i++) {
+    if (basicHeaderOptions[i].object) {
+      basicHeaderLinks.push(basicHeaderOptions[i]);
+    }
+  };
+
   return (
     <>
       <body className="font-main">
         <div className="centered-container">
           <Header
             name={name}
-            header={c_header}
+            basicHeader={basicHeaderLinks}
             relatedPages={_site.c_relatedPages}
             primaryColor={c_primaryColor}
             secondaryColor={c_secondaryColor}
@@ -141,17 +175,18 @@ const Index: React.FC<Data> = (props) => {
           photo={photoGallery[0].image.url}
           position="bg-center"
         ></Banner>
-        <About description={description}></About>
+        {c_displayAboutUs && (<About description={description}></About>)}
         <div className="w-full bg-gray-200">
           <div className="centered-container">
             <h2 className="pt-10 text-4xl text-center">
               <a id="contact">Contact</a>
             </h2>
-            <Contact
-              address={address}
-              mainPhone={mainPhone}
-              hours={hours}
-            ></Contact>
+            {c_displayContactInfo && (
+              <Contact
+                address={address}
+                mainPhone={mainPhone}
+                hours={hours}
+              ></Contact>)}
             {c_displayPhotoGallery && (
               <PhotoGallery photoGallery={photoGallery.slice(1, -1)}></PhotoGallery>
             )}

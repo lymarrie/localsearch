@@ -15,13 +15,16 @@ type Footer = {
 
 const Footer = (props: Footer) => {
   const { footer } = props;
-  const footerLinks = footer.map((link) => (
-    <div>
-      <a key="uRL" href={link.uRL} className="hover:underline">
-        {link.label}
-      </a>
-    </div>
-  ));
+  var footerLinks;
+  if (footer) {
+    footerLinks = footer.map((link) => (
+      <div>
+        <a key="uRL" href={link.uRL} className="hover:underline">
+          {link.label}
+        </a>
+      </div>
+    ));
+  }
   return (
     <div className="centered-container">
       <footer className="">

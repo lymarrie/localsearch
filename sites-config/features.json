@@ -17,8 +17,32 @@
       }
     },
     {
+      "name": "eventpage",
+      "streamId": "eventpage",
+      "templateType": "JS",
+      "entityPageSet": {
+        "plugin": {}
+      }
+    },
+    {
       "name": "gallery",
       "streamId": "gallery",
+      "templateType": "JS",
+      "entityPageSet": {
+        "plugin": {}
+      }
+    },
+    {
+      "name": "menupage",
+      "streamId": "menupage",
+      "templateType": "JS",
+      "entityPageSet": {
+        "plugin": {}
+      }
+    },
+    {
+      "name": "menuitem",
+      "streamId": "menuitem",
       "templateType": "JS",
       "entityPageSet": {
         "plugin": {}
@@ -91,6 +115,33 @@
       }
     },
     {
+      "$id": "eventpage",
+      "source": "knowledgeGraph",
+      "destination": "pages",
+      "fields": [
+        "id",
+        "uid",
+        "meta",
+        "name",
+        "description",
+        "address",
+        "time",
+        "photoGallery",
+        "slug"
+      ],
+      "filter": {
+        "entityTypes": [
+          "event"
+        ]
+      },
+      "localization": {
+        "locales": [
+          "en"
+        ],
+        "primary": false
+      }
+    },
+    {
       "$id": "gallery",
       "source": "knowledgeGraph",
       "destination": "pages",
@@ -106,6 +157,59 @@
       "filter": {
         "entityTypes": [
           "ce_photoGalleryPage"
+        ]
+      },
+      "localization": {
+        "locales": [
+          "en"
+        ],
+        "primary": false
+      }
+    },
+    {
+      "$id": "menupage",
+      "source": "knowledgeGraph",
+      "destination": "pages",
+      "fields": [
+        "id",
+        "uid",
+        "meta",
+        "name",
+        "description",
+        "c_menuItems.id",
+        "c_menuItems.name",
+        "c_menuItems.description",
+        "c_menuItems.price",
+        "c_menuItems.photoGallery"
+      ],
+      "filter": {
+        "entityTypes": [
+          "ce_menuPage"
+        ]
+      },
+      "localization": {
+        "locales": [
+          "en"
+        ],
+        "primary": false
+      }
+    },
+    {
+      "$id": "menuitem",
+      "source": "knowledgeGraph",
+      "destination": "pages",
+      "fields": [
+        "id",
+        "uid",
+        "meta",
+        "name",
+        "description",
+        "price",
+        "photoGallery"
+      ],
+      "filter": {
+        "entityTypes": [
+          "ce_menuItem"
         ]
       },
       "localization": {
@@ -132,6 +236,8 @@
         "services",
         "logo",
         "photoGallery",
+        "c_displayAboutUs",
+        "c_displayContactInfo",
         "c_displayPhotoGallery",
         "c_displayStaticMap",
         "c_primaryColor",

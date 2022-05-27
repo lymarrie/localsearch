@@ -18,7 +18,7 @@ type Logo = {
 
 type Header = {
   name: string;
-  header: Array<Link>;
+  basicHeader?: any;
   relatedPages?: any;
   primaryColor: string;
   secondaryColor: string;
@@ -29,9 +29,9 @@ type Header = {
 
 
 const Header = (props: Header) => {
-  const { name, header, relatedPages, primaryColor, secondaryColor, font, googleAnalytics, logo } = props;
+  const { name, basicHeader, relatedPages, primaryColor, secondaryColor, font, googleAnalytics, logo } = props;
   
-  var headerLinks;
+  var basicLinks;
   var relatedPageLinks;
   if (relatedPages) {
     relatedPageLinks = relatedPages.map((page: any) => (
@@ -42,13 +42,15 @@ const Header = (props: Header) => {
       </div>
     ));
   } else {
-    headerLinks = header.map((link) => (
-      <div>
-        <a key="uRL" href={link.uRL} className="hover:underline">
-          {link.label}
-        </a>
-      </div>
-    ));
+    if (basicHeader) {
+      basicLinks = basicHeader.map((page: any) => (
+        <div>
+          <a key="uRL" href={page.value} className="hover:underline">
+            {page.key}
+          </a>
+        </div>
+      ));
+    }
   }
 
   return (
@@ -56,7 +58,7 @@ const Header = (props: Header) => {
       <div className="centered-container">
         <nav className="py-6 flex items-center justify-between">
           <a href="/"><img src={logo.image.url} width="120" height="120"></img></a>
-          <div className="flex gap-x-10 text-lg font-semibold">{headerLinks}{relatedPageLinks}</div>
+          <div className="flex gap-x-10 text-lg font-semibold">{basicLinks}{relatedPageLinks}</div>
           <Cta buttonText={'Online Reservations'} url={'#'} color={'black'}></Cta>
         </nav>
       </div>

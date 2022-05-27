@@ -21,3 +21,13 @@
 .hero {
   height: 100%;
 }
+
+.card {
+  @apply rounded-xl drop-shadow-md;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  transition-duration: 0.3s;
+  cursor: pointer;
+}

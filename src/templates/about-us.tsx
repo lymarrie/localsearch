@@ -68,7 +68,7 @@ const AboutUs: React.FC<Data> = (props) => {
         <div className="centered-container">
             <Header
                 name={_site.name}
-                header={_site.c_header}
+                basicHeader={_site.c_header}
                 relatedPages={_site.c_relatedPages}
                 primaryColor={_site.c_primaryColor}
                 secondaryColor={_site.c_secondaryColor}

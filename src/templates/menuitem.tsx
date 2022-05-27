@@ -27,11 +27,11 @@
 
 
 export const config = {
-  name: "gallery",
+  name: "menuitem",
   hydrate: true,
-  streamId: "gallery",
+  streamId: "menuitem",
   stream: {
-    $id: "gallery",
+    $id: "menuitem",
     source: "knowledgeGraph",
     destination: "pages",
     fields: [
@@ -39,12 +39,12 @@ export const config = {
       "uid",
       "meta",
       "name",
-      "richTextDescription",
-      "photoGallery",
-      "slug"
+      "description",
+      "price",
+      "photoGallery"
     ],
     filter: {
-      entityTypes: ["ce_photoGalleryPage"],
+      entityTypes: ["ce_menuItem"],
     },
     localization: {
       locales: ["en"],
@@ -54,19 +54,20 @@ export const config = {
 };
 
 export const getPath = (data: any) => {
-  return `gallery`;
+    return `${data.document.streamOutput.id.toString()}`;
 };
 
-const Gallery = (props: any) => {
+const MenuItem: React.FC<Data> = (props) => {
     const { document } = props;
     const { streamOutput } = document;
     const { 
         _site, 
         name, 
-        richTextDescription, 
-        photoGallery, 
-        slug 
+        description, 
+        price,
+        photoGallery
       } = streamOutput;
+
 
       return (
         <>
@@ -84,15 +85,19 @@ const Gallery = (props: any) => {
                 ></Header>
             </div>
             <div className="w-full">
-                {photoGallery && (<Banner 
-                    name={name}
-                    secondaryColor="blue"
-                    photo={photoGallery[0].image.url}
-                    position="bg-center"
-                ></Banner>)}
             </div>
-                <div className="centered-container">
-                    {photoGallery && (<PhotoGallery photoGallery={photoGallery.slice(1)}></PhotoGallery>)}
+            <div className="centered-container">
+                  <div className="py-10 flex flex-col space-y-8 lg:flex-row lg:space-x-8 lg:space-y-0">
+                    <img src={photoGallery[0].image.url} className="rounded-xl lg:w-3/5"></img>
+                    <div className="flex flex-col space-y-8 lg:pt-2">
+                      <h1 className="text-3xl font-bold">{name}</h1>
+                      <div className="text-amber-700 text-2xl font-semibold">${price.value}</div>
+                      <div className="space-y-3">
+                        <div className="text-xl font-semibold">Description</div>
+                        <div className="text-gray-800">{description}</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             <Footer footer={_site.c_footer}></Footer>
           </body>
@@ -100,12 +105,12 @@ const Gallery = (props: any) => {
       );
     };
 
-export const render = (data: Data) =>
-  reactWrapper(
-    data,
-    "gallery.tsx",
-    renderToString(<Gallery {...data} />),
-    true
-  );
+    export const render = (data: Data) =>
+    reactWrapper(
+      data,
+      "menuitem.tsx",
+      renderToString(<MenuItem {...data} />),
+      true
+    );
 
-export default Gallery;
+export default MenuItem;

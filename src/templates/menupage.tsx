@@ -27,11 +27,11 @@
 
 
 export const config = {
-  name: "eventspage",
+  name: "menupage",
   hydrate: true,
-  streamId: "eventspage",
+  streamId: "menupage",
   stream: {
-    $id: "eventspage",
+    $id: "menupage",
     source: "knowledgeGraph",
     destination: "pages",
     fields: [
@@ -40,17 +40,14 @@ export const config = {
       "meta",
       "name",
       "description",
-      "photoGallery",
-      "c_events.name",
-      "c_events.description",
-      "c_events.linkedLocation",
-      "c_events.address",
-      "c_events.time",
-      "c_events.photoGallery",
-      "slug"
+      "c_menuItems.id",
+      "c_menuItems.name",
+      "c_menuItems.description",
+      "c_menuItems.price",
+      "c_menuItems.photoGallery"
     ],
     filter: {
-      entityTypes: ["ce_eventsPage"],
+      entityTypes: ["ce_menuPage"],
     },
     localization: {
       locales: ["en"],
@@ -60,32 +57,25 @@ export const config = {
 };
 
 export const getPath = (data: any) => {
-  return `events`;
+  return `menu`;
 };
 
-const EventPage: React.FC<Data> = (props) => {
+const MenuPage: React.FC<Data> = (props) => {
     const { document } = props;
     const { streamOutput } = document;
     const { 
         _site, 
         name, 
         description, 
-        photoGallery, 
-        c_events, 
-        slug 
+        c_menuItems
       } = streamOutput;
 
-      const sortedEvents = c_events.sort(function(a:any, b:any) {
-        return (a.time.start < b.time.start) ? -1 : ((a.time.start > b.time.start) ? 1 : 0);
-      });
-
-      const events = sortedEvents.map((e:any) => (
-        <div className="p-5 border-2 rounded-xl space-y-3 bg-gray-100 drop-shadow-md">
-          <img src={e.photoGallery[0].image.url} className="rounded-xl w-100 h-auto"/>
-          <div className="pt-2 text-xl text-center font-bold">{e.name}</div>
-          <div className="text-amber-700 font-semibold">{e.time.start}</div>
-          <div className="text-gray-500 font-semibold">{e.address.city}, {e.address.region}</div>
-          <div className="">{e.description}</div>
+      const items = c_menuItems.map((item:any) => (
+        <div className="card p-5 border-2 rounded-xl space-y-3 bg-gray-100 drop-shadow-md">
+          <img src={item.photoGallery[0].image.url} className="rounded-xl w-100 h-auto"/>
+          <div className="name pt-2 text-2xl text-center font-bold">{item.name}</div>
+          <div className="text-xl text-amber-700 font-semibold">${item.price.value}</div>
+          <div className="">{item.description}</div>
         </div>
       ));
 
@@ -95,7 +85,7 @@ const EventPage: React.FC<Data> = (props) => {
             <div className="centered-container">
                 <Header
                     name={_site.name}
-                    header={_site.c_header}
+                    basicHeader={_site.c_header}
                     relatedPages={_site.c_relatedPages}
                     primaryColor={_site.c_primaryColor}
                     secondaryColor={_site.c_secondaryColor}
@@ -105,18 +95,12 @@ const EventPage: React.FC<Data> = (props) => {
                 ></Header>
             </div>
             <div className="w-full">
-                {photoGallery && (<Banner 
-                    name={name}
-                    secondaryColor="blue"
-                    photo={photoGallery[0].image.url}
-                    position="bg-center"
-                ></Banner>)}
             </div>
                 <div className="centered-container">
                   <div className="section">
-                    <div className="text-4xl text-center">Events</div>
+                    <div className="text-4xl text-center font-bold">Menu Items</div>
                     <div className="pt-10 grid gap-y-8 sm:grid-cols-2 lg:grid-cols-3 gap-x-5">
-                      {events}
+                        {items}
                     </div>
                   </div>
                 </div>
@@ -129,9 +113,9 @@ const EventPage: React.FC<Data> = (props) => {
     export const render = (data: Data) =>
     reactWrapper(
       data,
-      "eventpage.tsx",
-      renderToString(<EventPage {...data} />),
+      "menupage.tsx",
+      renderToString(<MenuPage {...data} />),
       true
     );
 
-export default EventPage;
+export default MenuPage;
