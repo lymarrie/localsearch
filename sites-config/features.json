@@ -17,8 +17,8 @@
       }
     },
     {
-      "name": "eventpage",
-      "streamId": "eventpage",
+      "name": "event",
+      "streamId": "event",
       "templateType": "JS",
       "entityPageSet": {
         "plugin": {}
@@ -116,7 +116,7 @@
       }
     },
     {
-      "$id": "eventpage",
+      "$id": "event",
       "source": "knowledgeGraph",
       "destination": "pages",
       "fields": [

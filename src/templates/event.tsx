@@ -27,11 +27,11 @@
 
 
 export const config = {
-  name: "eventpage",
+  name: "event",
   hydrate: true,
-  streamId: "eventpage",
+  streamId: "event",
   stream: {
-    $id: "eventpage",
+    $id: "event",
     source: "knowledgeGraph",
     destination: "pages",
     fields: [
