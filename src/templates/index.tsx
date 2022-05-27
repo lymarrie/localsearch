@@ -154,6 +154,11 @@ const Index: React.FC<Data> = (props) => {
     }
   };
 
+  var relatedPages;
+  if (_site) {
+    relatedPages = _site.c_relatedPages;
+  }
+
   return (
     <>
       <body className="font-main">
@@ -161,7 +166,7 @@ const Index: React.FC<Data> = (props) => {
           <Header
             name={name}
             basicHeader={basicHeaderLinks}
-            relatedPages={_site.c_relatedPages}
+            relatedPages={relatedPages}
             primaryColor={c_primaryColor}
             secondaryColor={c_secondaryColor}
             font={c_font}
