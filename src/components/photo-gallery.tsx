@@ -31,7 +31,8 @@ const PhotoGallery = (props: PhotoGallery, display: boolean) => {
         <LazyLoadImage
           height={element.image.height}
           src={element.image.url} // use normal <img> attributes as props
-          width={element.image.width} className="animate rounded-xl drop-shadow-md"/>
+          width={element.image.width}
+          className="image"/>
       </div>
     ));
 

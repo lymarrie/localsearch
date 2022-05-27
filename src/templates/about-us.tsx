@@ -85,7 +85,7 @@ const AboutUs: React.FC<Data> = (props) => {
             ></Banner>
         </div>
             <div className="centered-container">
-                <div className="section px-10 grid grid-cols-2 gap-x-10">
+                <div className="section px-10 flex flex-col space-y-8 lg:grid lg:grid-cols-2 lg:gap-x-10">
                     {photoGallery && (
                         <div>
                             <LazyLoadImage
