@@ -27,11 +27,11 @@
 
 
 export const config = {
-  name: "event",
+  name: "eventpage",
   hydrate: true,
-  streamId: "event",
+  streamId: "eventpage",
   stream: {
-    $id: "event",
+    $id: "eventpage",
     source: "knowledgeGraph",
     destination: "pages",
     fields: [
@@ -66,7 +66,7 @@ const renderPrettyAddress = (address: any) => {
 };
 
 export const getPath = (data: Data) => {
-  return `${data.document.streamOutput.id.toString()}`;
+  return `${data.document.streamOutput.slug.toString()}`;
 };
 
 const Event: React.FC<Data> = (props) => {

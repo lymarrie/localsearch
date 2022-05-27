@@ -44,7 +44,8 @@ export const config = {
       "c_menuItems.name",
       "c_menuItems.description",
       "c_menuItems.price",
-      "c_menuItems.photoGallery"
+      "c_menuItems.photoGallery",
+      "c_menuItems.slug"
     ],
     filter: {
       entityTypes: ["ce_menuPage"],
@@ -71,12 +72,14 @@ const MenuPage: React.FC<Data> = (props) => {
       } = streamOutput;
 
       const items = c_menuItems.map((item:any) => (
-        <div className="card p-5 border-2 rounded-xl space-y-3 bg-gray-100 drop-shadow-md">
-          <img src={item.photoGallery[0].image.url} className="rounded-xl w-100 h-auto"/>
-          <div className="name pt-2 text-2xl text-center font-bold">{item.name}</div>
-          <div className="text-xl text-amber-700 font-semibold">${item.price.value}</div>
-          <div className="">{item.description}</div>
-        </div>
+        <a href={item.slug}>
+          <div className="card p-5 border-2 rounded-xl space-y-3 bg-gray-100 drop-shadow-md">
+            <img src={item.photoGallery[0].image.url} className="rounded-xl w-100 h-auto"/>
+            <div className="name pt-2 text-2xl text-center font-bold">{item.name}</div>
+            <div className="text-xl text-amber-700 font-semibold">${item.price.value}</div>
+            <div className="">{item.description}</div>
+          </div>
+        </a>
       ));
 
       return (

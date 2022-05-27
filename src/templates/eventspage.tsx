@@ -47,6 +47,7 @@ export const config = {
       "c_events.address",
       "c_events.time",
       "c_events.photoGallery",
+      "c_events.slug",
       "slug"
     ],
     filter: {
@@ -72,7 +73,7 @@ const EventsPage: React.FC<Data> = (props) => {
         description, 
         photoGallery, 
         c_events, 
-        slug 
+        slug
       } = streamOutput;
 
       const sortedEvents = c_events.sort(function(a:any, b:any) {
@@ -80,13 +81,15 @@ const EventsPage: React.FC<Data> = (props) => {
       });
 
       const events = sortedEvents.map((e:any) => (
-        <div className="card p-5 border-2 rounded-xl space-y-3 bg-gray-100 drop-shadow-md">
-          <img src={e.photoGallery[0].image.url} className="rounded-xl w-100 h-auto"/>
-          <div className="pt-2 text-xl text-center font-bold">{e.name}</div>
-          <div className="text-amber-700 font-semibold">{e.time.start}</div>
-          <div className="text-gray-500 font-semibold">{e.address.city}, {e.address.region}</div>
-          <div className="">{e.description}</div>
-        </div>
+        <a href={e.slug}>
+          <div className="card p-5 border-2 rounded-xl space-y-3 bg-gray-100 drop-shadow-md">
+            <img src={e.photoGallery[0].image.url} className="rounded-xl w-100 h-auto"/>
+            <div className="pt-2 text-xl text-center font-bold">{e.name}</div>
+            <div className="text-amber-700 font-semibold">{e.time.start}</div>
+            <div className="text-gray-500 font-semibold">{e.address.city}, {e.address.region}</div>
+            <div className="">{e.description}</div>
+          </div>
+        </a>
       ));
 
       return (

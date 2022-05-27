@@ -41,7 +41,8 @@ export const config = {
       "name",
       "description",
       "price",
-      "photoGallery"
+      "photoGallery",
+      "slug"
     ],
     filter: {
       entityTypes: ["ce_menuItem"],
@@ -54,7 +55,7 @@ export const config = {
 };
 
 export const getPath = (data: any) => {
-    return `${data.document.streamOutput.id.toString()}`;
+    return `${data.document.streamOutput.slug.toString()}`;
 };
 
 const MenuItem: React.FC<Data> = (props) => {
@@ -65,7 +66,8 @@ const MenuItem: React.FC<Data> = (props) => {
         name, 
         description, 
         price,
-        photoGallery
+        photoGallery,
+        slug
       } = streamOutput;
 
 
