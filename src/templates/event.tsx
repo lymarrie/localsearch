@@ -43,6 +43,7 @@ export const config = {
       "address",
       "time",
       "photoGallery",
+      "slug"
     ],
     filter: {
       entityTypes: ["event"],
