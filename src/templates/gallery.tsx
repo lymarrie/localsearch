@@ -19,6 +19,7 @@
  import List from "../components/list";
  import PhotoGallery from "../components/photo-gallery";
  import StaticMap from "../components/static-map";
+ import { SchemaWrapper } from "../components/schema/jsonld";
  
  import { reactWrapper } from "../wrapper";
  import { renderToString } from "react-dom/server";
@@ -106,8 +107,10 @@ export const render = (data: Data) =>
     "gallery.tsx",
     renderToString(<Gallery {...data} />),
     true,
-    false,
-    "Luc's Pizza | New York City"
+    SchemaWrapper(data),
+    "Luc's Pizza | New York City",
+    "Luc's Pizza is an Italian-American restaurant created by Luc Marrie located in East Village. We have pizza, pasta, and dessert.",
+    data.document.streamOutput.photoGallery[0].image.url
   );
 
 export default Gallery;
