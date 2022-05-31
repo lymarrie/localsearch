@@ -218,7 +218,8 @@ export const render = (data: Data) =>
     true,
     SchemaWrapper(data),
     "Luc's Pizza | New York City",
-    "Luc is an Italian-American restaurant created by Luc Marrie located in East Village. We have pizza, pasta, and dessert."
+    "Luc's Pizza is an Italian-American restaurant created by Luc Marrie located in East Village. We have pizza, pasta, and dessert.",
+    data.document.streamOutput.photoGallery[0].image.url
   );
 
 export default Index;
