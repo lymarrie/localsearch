@@ -3,7 +3,7 @@ export const reactWrapper = (
   filename: string,
   template: string,
   hydrate: boolean,
-  schema: any,
+  schema?: any,
 ): string => {
   return `<!DOCTYPE html>
     <html lang="en">
@@ -12,7 +12,6 @@ export const reactWrapper = (
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>React Page Usings Plugin</title>
         <script>window.__INITIAL__DATA__ = ${JSON.stringify(data)}</script>
-        ${schema}
         ${getCssTags(
           `src/templates/${filename}`,
           data.__meta.manifest.bundlerManifest,
