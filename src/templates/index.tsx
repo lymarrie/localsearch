@@ -211,6 +211,14 @@ const Index: React.FC<Data> = (props) => {
  * NOTE: Future changes may impact how this is used.
  */
 export const render = (data: Data) =>
-  reactWrapper(data, "index.tsx", renderToString(<Index {...data} />), true, SchemaWrapper(data));
+  reactWrapper(
+    data,
+    "index.tsx",
+    renderToString(<Index {...data} />),
+    true,
+    SchemaWrapper(data),
+    "Luc's Pizza | New York City",
+    "Luc is an Italian-American restaurant created by Luc Marrie located in East Village. We have pizza, pasta, and dessert."
+  );
 
 export default Index;

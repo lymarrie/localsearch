@@ -113,7 +113,9 @@ const MenuItem: React.FC<Data> = (props) => {
       data,
       "menuitem.tsx",
       renderToString(<MenuItem {...data} />),
-      true
+      true,
+      false,
+      "Luc's Pizza | New York City"
     );
 
 export default MenuItem;

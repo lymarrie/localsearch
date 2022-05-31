@@ -134,7 +134,9 @@ const EventsPage: React.FC<Data> = (props) => {
       data,
       "eventspage.tsx",
       renderToString(<EventsPage {...data} />),
-      true
+      true,
+      false,
+      "Luc's Pizza | New York City"
     );
 
 export default EventsPage;

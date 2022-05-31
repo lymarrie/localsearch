@@ -109,7 +109,9 @@ export const render = (data: Data) =>
     data,
     "about-us.tsx",
     renderToString(<AboutUs {...data} />),
-    true
+    true,
+    false,
+    "Luc's Pizza | New York City"
   );
 
 export default AboutUs;

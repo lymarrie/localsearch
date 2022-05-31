@@ -105,7 +105,9 @@ export const render = (data: Data) =>
     data,
     "gallery.tsx",
     renderToString(<Gallery {...data} />),
-    true
+    true,
+    false,
+    "Luc's Pizza | New York City"
   );
 
 export default Gallery;

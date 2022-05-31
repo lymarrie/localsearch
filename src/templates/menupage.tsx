@@ -118,7 +118,9 @@ const MenuPage: React.FC<Data> = (props) => {
       data,
       "menupage.tsx",
       renderToString(<MenuPage {...data} />),
-      true
+      true,
+      false,
+      "Luc's Pizza | New York City"
     );
 
 export default MenuPage;

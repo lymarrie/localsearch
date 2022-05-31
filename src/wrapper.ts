@@ -4,13 +4,18 @@ export const reactWrapper = (
   template: string,
   hydrate: boolean,
   schema?: any,
+  metaName?: string,
+  metaDescription?: string,
+  metaImage?: string
 ): string => {
   return `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>React Page Usings Plugin</title>
+        <title>${metaName}</title>
+        <meta name="description" content='${metaDescription}'>
+        <meta property="og:image" content=${metaImage}>
         <script>window.__INITIAL__DATA__ = ${JSON.stringify(data)}</script>
         ${getCssTags(
           `src/templates/${filename}`,
