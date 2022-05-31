@@ -107,10 +107,8 @@ export const render = (data: Data) =>
     "gallery.tsx",
     renderToString(<Gallery {...data} />),
     true,
-    SchemaWrapper(data),
-    "Luc's Pizza | New York City",
-    "Luc's Pizza is an Italian-American restaurant created by Luc Marrie located in East Village. We have pizza, pasta, and dessert.",
-    data.document.streamOutput.photoGallery[0].image.url
+    false,
+    "Luc's Pizza | New York City"
   );
 
 export default Gallery;

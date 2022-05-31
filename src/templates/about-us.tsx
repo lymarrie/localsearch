@@ -111,7 +111,7 @@ export const render = (data: Data) =>
     "about-us.tsx",
     renderToString(<AboutUs {...data} />),
     true,
-    SchemaWrapper(data),
+    false,
     "Luc's Pizza | New York City"
   );
 

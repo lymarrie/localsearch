@@ -120,9 +120,8 @@ const MenuPage: React.FC<Data> = (props) => {
       "menupage.tsx",
       renderToString(<MenuPage {...data} />),
       true,
-      SchemaWrapper(data),
-      "Luc's Pizza | New York City",
-      "Luc's Pizza is an Italian-American restaurant created by Luc Marrie located in East Village. We have pizza, pasta, and dessert."
+      false,
+      "Luc's Pizza | New York City"
     );
 
 export default MenuPage;
