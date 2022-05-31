@@ -100,6 +100,7 @@ const Event: React.FC<Data> = (props) => {
             <div className="w-full">
             </div>
                 <div className="centered-container">
+                  <div><a href="/events" className="text-xl font-semibold hover:underline">&lsaquo; View All Events</a></div>
                   <div className="py-10 flex flex-col space-y-8 lg:flex-row lg:space-x-8 lg:space-y-0">
                     <img src={photoGallery[0].image.url} className="rounded-xl lg:w-3/5"></img>
                     <div className="flex flex-col space-y-8 lg:pt-2">
