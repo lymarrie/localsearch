@@ -19,6 +19,7 @@ import Hours from "../components/hours";
 import List from "../components/list";
 import PhotoGallery from "../components/photo-gallery";
 import StaticMap from "../components/static-map";
+import { SchemaWrapper } from "../components/schema/jsonld";
 
 import { reactWrapper } from "../wrapper";
 import { renderToString } from "react-dom/server";
@@ -29,18 +30,12 @@ import { Data } from "../types/data";
  * Required when Knowledge Graph data is used for a template.
  */
 export const config = {
-  // The name of the feature.
-  // NOTE: A future change may remove this and the feature name would use the name of the template by default.
   name: "index",
   streamId: "locations",
   stream: {
     $id: "locations",
-    // Required for now, but the plugin could set this automatically for you.
     source: "knowledgeGraph",
-    // Required for now, but the plugin could set this automatically for you.
     destination: "pages",
-    // Specifies the exact data that each generated document will contain. This data is passed in
-    // directly as props to the default exported function.
     fields: [
       "id",
       "uid",
@@ -66,11 +61,9 @@ export const config = {
       "c_googleAnalytics",
       "c_metaDescription"
     ],
-    // Defines the scope of entities that qualify for this stream.
     filter: {
       entityTypes: ["location"],
     },
-    // The entity language profiles that documents will be generated for.
     localization: {
       locales: ["en"],
       primary: false,
@@ -218,6 +211,6 @@ const Index: React.FC<Data> = (props) => {
  * NOTE: Future changes may impact how this is used.
  */
 export const render = (data: Data) =>
-  reactWrapper(data, "index.tsx", renderToString(<Index {...data} />), true);
+  reactWrapper(data, "index.tsx", renderToString(<Index {...data} />), true, SchemaWrapper(data));
 
 export default Index;
