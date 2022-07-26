@@ -2,12 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+h1 {
+  @apply text-4xl font-semibold;
+}
+
+h2 {
+  @apply text-2xl font-semibold;
+}
+
 .centered-container {
   @apply mx-auto px-5 md:px-14 max-w-screen-xl;
 }
 
 .section {
-  @apply mt-10 mb-16;
+  @apply mt-8 mb-16;
 }
 
 .primary-cta {
@@ -18,10 +26,6 @@
   @apply bg-sky-700 hover:bg-sky-800;
 }
 
-.hero {
-  height: 100%;
-}
-
 .image {
   @apply rounded-xl drop-shadow-md;
 }
@@ -30,6 +34,10 @@
   transform: scale(1.02);
   transition-duration: 0.3s;
   cursor: pointer;
+}
+
+.social-link {
+  @apply text-black flex gap-x-3 hover:text-blue-500 hover:cursor-pointer;
 }
 
 .card {

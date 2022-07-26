@@ -1,27 +1,21 @@
-import React from "react";
-import Cta from './cta';
+import * as React from "react";
 
 type Banner = {
-  name?: string;
-  secondaryColor: string;
-  photo: string;
-  position?: string;
+  text?: string;
+  children?: React.ReactNode;
 };
 
-
 const Banner = (props: Banner) => {
-  const { name, secondaryColor, photo, position } = props;
+  const { 
+    text, 
+    children 
+  } = props;
 
   return (
     <>
-      <div className="h-96">
-        <div
-          className={`${position} ` + 'hero text-5xl font-bold text-white p-10 flex items-center justify-center flex-row space-x-20 drop-shadow-md bg-cover'} style={{ backgroundImage: `url(${photo})` }}>
-            
-          <div className="flex-col space-y-10 text-center">
-            <div>{name}</div>
-          </div>
-        </div>
+      <div className="bg-red-900 text-5xl font-bold text-white p-10 flex items-center justify-center flex-col gap-x-14 gap-y-10 md:flex-row">
+        <div>{text}</div>
+        {children}
       </div>
     </>
   );
